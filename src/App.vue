@@ -1,6 +1,29 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { watch, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const descriptionMap: { [index: string]: string } = {
+  '/': 'This project is a collection of mini-apps, each of which solves problems that will help you not only shine at an interview, but also master a bunch of new features and technologies before you forget how to write JavaScript!',
+  '/countries':
+    "Simple typeahead functionality which displays the list of countries as the user types in country's name. The UI consist of an input where the user types in a country name and a list of matching options returned by the API.",
+}
+
+const updateDescription = (newPath: string) => {
+  description.value = descriptionMap[newPath] ?? descriptionMap['/']
+}
+
+const description = ref('')
+
+watch(
+  () => route.path,
+  (newPath) => updateDescription(newPath),
+)
+
+updateDescription(route.path)
 </script>
 
 <template>
@@ -8,7 +31,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="QueryQuirk" />
+      <HelloWorld :msg="description" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

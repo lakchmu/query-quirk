@@ -6,11 +6,9 @@ defineProps<{
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">QueryQuirk</h1>
     <h3>
-      This project is a collection of mini-apps, each of which solves problems that will help you
-      not only shine at an interview, but also master a bunch of new features and technologies
-      before you forget how to write JavaScript!
+      {{ msg }}
     </h3>
   </div>
 </template>
