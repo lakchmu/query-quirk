@@ -27,6 +27,7 @@ const searchContries = async () => {
 
   try {
     const data = await getCountries(searchTerm.value)
+    // @ts-ignore
     if (Object.hasOwn(data, 'status') && data['status'] === 404) {
       error.value = 'Error when request data'
     }
